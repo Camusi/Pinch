@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gaze Control</title>
+
+    <style>
+        html, body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        #info {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 999999;
+            font-size: 20px;
+        }
+
+        #mode {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 999999;
+            padding: 10px 16px;
+            background: #222;
+            border: 2px solid white;
+            border-radius: 8px;
+            font-size: 18px;
+        }
+
+        #gazePoint {
+            position: fixed;
+            width: 25px;
+            height: 25px;
+            background: red;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 999999;
+        }
+
+        #menu {
+            position: fixed;
+            inset: 0;
+            z-index: 50000;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            background: #111;
+        }
+
+        #menu h1 {
+            font-size: 42px;
+            margin-bottom: 40px;
+        }
+
+        .modeButton {
+            width: 250px;
+            padding: 20px;
+            margin: 10px;
+
+            font-size: 24px;
+            font-weight: bold;
+
+            cursor: pointer;
+            border-radius: 10px;
+            border: 2px solid white;
+        }
+
+        #trainButton {
+            background: #333;
+            color: white;
+        }
+
+        #testButton {
+            background: #333;
+            color: white;
+        }
+
+        #controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            z-index: 40000;
+
+            display: none;
+
+            gap: 10px;
+        }
+
+        #controls button {
+            padding: 12px 25px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .target {
+            position: absolute;
+
+            width: 250px;
+            height: 120px;
+
+            font-size: 24px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        #chrome {
+            left: 15%;
+            top: 30%;
+        }
+
+        #calculator {
+            right: 15%;
+            top: 30%;
+        }
+
+        #notepad {
+            left: 40%;
+            bottom: 20%;
+        }
+
+        #trainingArea {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 30000;
+        }
+
+        .calibrationPoint {
+            position: absolute;
+
+            width: 35px;
+            height: 35px;
+
+            background: red;
+            border: 4px solid white;
+
+            border-radius: 50%;
+
+            transform: translate(-50%, -50%);
+
+            cursor: pointer;
+        }
+
+        #trainingText {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            font-size: 25px;
+            text-align: center;
+
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- START MENU -->
+
+    <div id="menu">
+
+        <h1>Gaze Control</h1>
+
+        <button
+            id="trainButton"
+            class="modeButton"
+        >
+            TRAIN
+        </button>
+
+        <button
+            id="testButton"
+            class="modeButton"
+        >
+            TEST
+        </button>
+
+    </div>
+
+
+    <!-- STATUS -->
+
+    <div id="info">
+        Starting...
+    </div>
+
+
+    <div id="mode">
+        MODE: MENU
+    </div>
+
+
+    <!-- GAZE POINT -->
+
+    <div id="gazePoint"></div>
+
+
+    <!-- TEST OBJECTS -->
+
+    <button
+        class="target"
+        id="chrome"
+    >
+        OPEN CHROME
+    </button>
+
+
+    <button
+        class="target"
+        id="calculator"
+    >
+        CALCULATOR
+    </button>
+
+
+    <button
+        class="target"
+        id="notepad"
+    >
+        NOTEPAD
+    </button>
+
+
+    <!-- TRAINING -->
+
+    <div id="trainingArea">
+
+        <div id="trainingText">
+            Look at the red dot and click it
+        </div>
+
+    </div>
+
+
+    <!-- MODE CONTROLS -->
+
+    <div id="controls">
+
+        <button id="switchTrain">
+            TRAIN
+        </button>
+
+        <button id="switchTest">
+            TEST
+        </button>
+
+    </div>
+
+
+    <script src="./app.js"></script>
+
+</body>
+</html>
